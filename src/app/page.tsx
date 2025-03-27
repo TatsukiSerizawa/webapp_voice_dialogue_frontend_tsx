@@ -31,6 +31,10 @@ export default function Home() {
         const response = await fetch("https://voice-dialogue-backend-bzazcff4dmdrdvh4.japaneast-01.azurewebsites.net/api/transcribe/", {
           method: "POST",
           body: formData,
+          mode: "cors",
+          headers: {
+            "Accept": "application/json",
+          },
         });
 
         console.log("Server Response Status:", response.status);
