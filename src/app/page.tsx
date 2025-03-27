@@ -28,7 +28,7 @@ export default function Home() {
         const formData = new FormData();
         formData.append("audio", audioBlob, "audio.webm");
 
-        const response = await fetch("http://127.0.0.1:8000/api/transcribe/", {
+        const response = await fetch("https://voice-dialogue-backend-bzazcff4dmdrdvh4.japaneast-01.azurewebsites.net/api/transcribe/", {
           method: "POST",
           body: formData,
         });
@@ -51,7 +51,7 @@ export default function Home() {
         }
 
         // 音声のURLを設定
-        const completeAudioURL = `http://127.0.0.1:8000${data.audio_url}`;
+        const completeAudioURL = `https://voice-dialogue-backend-bzazcff4dmdrdvh4.japaneast-01.azurewebsites.net/${data.audio_url}`;
         setAudioURL(completeAudioURL);
 
         // 音声を再生
