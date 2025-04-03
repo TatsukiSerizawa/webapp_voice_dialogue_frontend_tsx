@@ -55,7 +55,7 @@ export default function Home() {
 
         // 音声のURLを設定
         console.log(data.audio_url);
-        const completeAudioURL = `https://voice-dialogue-backend-bzazcff4dmdrdvh4.japaneast-01.azurewebsites.net/${data.audio_url}`;
+        const completeAudioURL = data.audio_url;
         setAudioURL(completeAudioURL);
 
         // 音声を再生
