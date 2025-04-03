@@ -5,15 +5,15 @@ export default function Home() {
   const [recording, setRecording] = useState<boolean>(false);
   const [audioURL, setAudioURL] = useState<string>("");
   const [textResponse, setTextResponse] = useState<string>("");  // GPTからのテキストレスポンス
-  const mediaRecorderRef = useRef<MediaRecorder | null>(null); // 🔹 mediaRecorder を useRef で管理
-  const audioChunksRef = useRef<Blob[]>([]); // 🔹 音声データを格納
+  const mediaRecorderRef = useRef<MediaRecorder | null>(null); // mediaRecorder を useRef で管理
+  const audioChunksRef = useRef<Blob[]>([]); // 音声データを格納
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const startRecording = async () => {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
     const mediaRecorder = new MediaRecorder(stream);
     
-    // 🔹 Ref に mediaRecorder を保存
+    // Ref に mediaRecorder を保存
     mediaRecorderRef.current = mediaRecorder;
     audioChunksRef.current = [];
 
@@ -28,7 +28,8 @@ export default function Home() {
         const formData = new FormData();
         formData.append("audio", audioBlob, "audio.webm");
 
-        const response = await fetch("https://voice-dialogue-backend-bzazcff4dmdrdvh4.japaneast-01.azurewebsites.net/api/transcribe/", {
+        const response = await fetch("https://voice-dialogue-backend.azurewebsites.net/api/transcribe/", {
+        // const response = await fetch("http://127.0.0.1:8000/api/transcribe/", {
           method: "POST",
           body: formData,
           headers: {
