@@ -97,14 +97,14 @@ export default function Home() {
           <img src="/ai_avatar.png" alt="AI Character" className="w-full" />
         </div>
 
-        {/* 吹き出し（常に表示、中身だけ切り替え） */}
-        <div className="bg-white shadow-md rounded-lg p-4 max-w-lg relative">
-          <p className="text-gray-700 font-semibold">ソフィア:</p>
-          <p className="text-gray-900 mt-2">
-            {textResponse || "こんにちは！お話しできるのを楽しみにしてるよ〜"}
-          </p>
-          <div className="absolute top-6 left-[-10px] w-0 h-0 border-t-8 border-b-8 border-r-8 border-transparent border-r-white"></div>
-        </div>
+        {/* 吹き出し（テキストがあるときだけ表示） */}
+        {textResponse && (
+          <div className="bg-white shadow-md rounded-lg p-4 max-w-lg relative">
+            <p className="text-gray-700 font-semibold">ソフィア:</p>
+            <p className="text-gray-900 mt-2">{textResponse}</p>
+            <div className="absolute top-6 left-[-10px] w-0 h-0 border-t-8 border-b-8 border-r-8 border-transparent border-r-white"></div>
+          </div>
+        )}
       </div>
       <button
         onClick={recording ? stopRecording : startRecording}
