@@ -54,6 +54,7 @@ export default function Home() {
         }
 
         // 音声のURLを設定
+        console.log(data.audio_url);
         const completeAudioURL = `https://voice-dialogue-backend-bzazcff4dmdrdvh4.japaneast-01.azurewebsites.net/${data.audio_url}`;
         setAudioURL(completeAudioURL);
 
@@ -62,8 +63,10 @@ export default function Home() {
         audioRef.current.load();
         audioRef.current.play()
           .then(() => console.log("Audio is playing"))
-          .catch((error) => console.error("Audio play error:", error));
-        // 🔹 音声 URL とテキストをリセット
+          .catch((error) => {
+            console.error("Audio play error:", error);
+            alert("ボイスを再生できませんでした。クリックして再生してください。")
+          });
         setAudioURL("");
 
       } catch (error) {
